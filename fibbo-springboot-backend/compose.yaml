@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=fibbo'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5432:5432'
+    networks:
+      - my-network
+
+  spring-app:
+    build: .
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fibbo
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+
+networks:
+  my-network:
+    driver: bridge
