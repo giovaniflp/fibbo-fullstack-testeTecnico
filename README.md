@@ -1,5 +1,5 @@
 
-# Fibbo Desafio Técnico Fullstack - ExpressJs + ReactJs + NextJs + MySQL
+# Fibbo Desafio Técnico Fullstack - SpringBoot + ReactJs + NextJs + PostgreSQL
 
 Projeto feito para uma vaga de Desenvolvedor Fullstack disponibilizado pela Fibbo.
 
