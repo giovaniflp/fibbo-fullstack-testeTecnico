@@ -16,6 +16,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { format } from "date-fns"
+import { formatInTimeZone } from "date-fns-tz"
 
 export default function SearchItem(){
 
@@ -27,9 +28,8 @@ export default function SearchItem(){
     const [idInput, setIdInput] = useState()
     const [modalOpen, setModalOpen] = useState(false)
 
-    const formatarData = (data: string) => {
-        const dataFormatada = format(new Date(data), "dd/MM/yyyy 'às' HH:mm")
-        return dataFormatada
+    const formatarData = (data: Date) => {
+        return formatInTimeZone(new Date(data), 'Pacific/Easter', "dd/MM/yyyy 'às' HH:mm")
     }
 
     const getProductData = async() =>{

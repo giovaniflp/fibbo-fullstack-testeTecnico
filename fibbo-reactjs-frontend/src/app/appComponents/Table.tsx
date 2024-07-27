@@ -14,10 +14,10 @@ import {
 import axiosConfig from "../../../axiosConfig"
 import { useEffect, useState } from "react"
 import { format, set } from "date-fns";
-import { formatInTimeZone } from 'date-fns-tz'
 import { compareAsc, compareDesc } from 'date-fns';
 import { Button } from "@/components/ui/button";
 import { DeleteAlert } from "./DeleteAlert";
+import { formatInTimeZone } from 'date-fns-tz'
 import { EditItem } from "./EditItem";
 import {
     Pagination,
@@ -67,9 +67,8 @@ export default function TableComponent(){
         })
     }
 
-    const formatarData = (data: string) => {
-        const dataFormatada = format(new Date(data), "dd/MM/yyyy 'às' HH:mm")
-        return dataFormatada
+    const formatarData = (data: Date) => {
+        return formatInTimeZone(new Date(data), 'Pacific/Easter', "dd/MM/yyyy 'às' HH:mm")
     }
 
     const getProdutos = async () => {
